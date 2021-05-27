@@ -3,12 +3,11 @@ package com.bisoft.navi.common.model;
 import com.bisoft.navi.common.exceptions.GetTitleObjectException;
 import com.bisoft.navi.common.interfaces.ISavedFormat;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -26,14 +25,12 @@ public class CSVFormat implements ISavedFormat {
 	}
 	
 	@Override
-	public Iterable<String> loadedData(InputStreamReader inp) throws GetTitleObjectException {
-		try {
-			inp.
-			return Arrays.stream(inp.readLine().split(delimiter)).collect(Collectors.toList());
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new GetTitleObjectException("Get Title Object Fail");
+	public Iterable<String> loadedTitles(InputStream inp) throws GetTitleObjectException {
+		List<String> titles = new ArrayList<>();
+		try(Scanner scn = new Scanner(new BufferedInputStream(inp))) {
+			titles = Arrays.stream(scn.nextLine().split(delimiter)).toList();
 		}
+		return titles;
 	}
 	
 	@Override
