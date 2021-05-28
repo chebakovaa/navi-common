@@ -4,6 +4,7 @@ import com.bisoft.navi.common.exceptions.GetTitleObjectException;
 import com.bisoft.navi.common.interfaces.ISavedFormat;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +29,7 @@ public class CSVFormat implements ISavedFormat {
 	public Iterable<String> loadedTitles(InputStream inp) throws GetTitleObjectException {
 		List<String> titles = new ArrayList<>();
 		try(Scanner scn = new Scanner(new BufferedInputStream(inp))) {
-			titles = Arrays.stream(scn.nextLine().split(delimiter)).toList();
+			titles = List.of(scn.nextLine().split(String.format("\\%s",delimiter)));
 		}
 		return titles;
 	}

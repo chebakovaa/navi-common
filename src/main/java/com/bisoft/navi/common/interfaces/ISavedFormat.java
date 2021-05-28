@@ -15,4 +15,27 @@ public interface ISavedFormat {
 	String extensionWithDot();
 	
 	String extension();
+	
+	public class Fake implements ISavedFormat {
+		
+		@Override
+		public void save(OutputStreamWriter out, Iterable<String> row) throws IOException {
+		
+		}
+		
+		@Override
+		public Iterable<String> loadedTitles(InputStream inp) throws GetTitleObjectException {
+			return null;
+		}
+		
+		@Override
+		public String extensionWithDot() {
+			return null;
+		}
+		
+		@Override
+		public String extension() {
+			return null;
+		}
+	}
 }
