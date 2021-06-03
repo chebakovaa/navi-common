@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public interface IStructureSource {
-    Iterator<IModelObject> objectCollection(ElementType et) throws LoadStructureSourceException;
+    Iterator<IModelObject> objectCollection(String prefix) throws LoadStructureSourceException;
 
     class Fake implements IStructureSource {
         private final List<IModelObject> list;
@@ -17,17 +17,10 @@ public interface IStructureSource {
         }
 
         @Override
-        public Iterator<IModelObject> objectCollection(ElementType et) throws LoadStructureSourceException {
+        public Iterator<IModelObject> objectCollection(String prefix) throws LoadStructureSourceException {
             return (list)
                     .listIterator();
         }
     }
 
-    enum ElementType {
-        OBJ,
-        REL,
-        FACT,
-        DIC,
-        ALL
-    }
 }

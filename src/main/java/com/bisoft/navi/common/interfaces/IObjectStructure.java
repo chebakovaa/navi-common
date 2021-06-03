@@ -6,4 +6,13 @@ import java.io.IOException;
 
 public interface IObjectStructure {
     void save() throws IOException, GetObjectNamesException;
+    
+    enum ElementType {
+        OBJ,
+        REL,
+        FACT,
+        DIC,
+        ALL
+    }
+    
 }
