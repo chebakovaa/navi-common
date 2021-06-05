@@ -1,6 +1,5 @@
 package com.bisoft.navi.common.resources;
 
-import com.bisoft.navi.App;
 import com.bisoft.navi.common.exceptions.LoadConnectionParameterException;
 import com.bisoft.navi.common.interfaces.ITypedResource;
 import org.w3c.dom.Document;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 public class XMLResource  implements ITypedResource<Map<String, String>> {
 
