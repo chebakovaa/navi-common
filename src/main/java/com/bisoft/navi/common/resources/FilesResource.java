@@ -29,7 +29,7 @@ public final class FilesResource implements ITypedResource<Map<String, String>> 
 		Map<String, String> result = new HashMap<>();
 		for(String resourceName: resourceNames) {
 			try(InputStream queryStream = App.class.getClassLoader().getResourceAsStream(resourceName)){
-				if(queryStream == null){
+				if (queryStream == null) {
 					throw new IOException();
 				}
 				String val = new BufferedReader(
