@@ -1,6 +1,7 @@
 package com.bisoft.navi.common.resources;
 
 import com.bisoft.navi.App;
+import com.bisoft.navi.common.exceptions.LoadResourceException;
 import com.bisoft.navi.common.interfaces.ITypedResource;
 import com.bisoft.navi.common.exceptions.LoadConnectionParameterException;
 
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class MapResource implements ITypedResource<Map<String, String>> {
+public final class MapResource implements ITypedResource<Map<String, String>> {
     private final String resourceName;
 
     public MapResource(String resourceName) {
@@ -18,7 +19,7 @@ public class MapResource implements ITypedResource<Map<String, String>> {
     }
 
     @Override
-    public Map<String, String> loadedResource() throws LoadConnectionParameterException {
+    public Map<String, String> loadedResource() throws LoadResourceException {
         Map<String, String> result = new HashMap<>();
         Properties property = new Properties();
         try(InputStream is = App.class.getClassLoader().getResourceAsStream(resourceName)){
@@ -26,9 +27,10 @@ public class MapResource implements ITypedResource<Map<String, String>> {
             property.forEach(
               (k, v) -> result.put((String)k, (String)v)
             );
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new LoadConnectionParameterException("Loading ConnectionParameter Fail.");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new LoadResourceException(
+              String.format("Loading resource from %s fail", resourceName), ex);
         }
         return result;
     }
