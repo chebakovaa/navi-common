@@ -1,7 +1,6 @@
 package com.bisoft.navi.common.resources;
 
 import com.bisoft.navi.App;
-import com.bisoft.navi.common.exceptions.LoadConnectionParameterException;
 import com.bisoft.navi.common.exceptions.LoadResourceException;
 import com.bisoft.navi.common.interfaces.ITypedResource;
 
@@ -12,7 +11,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.stream.Collectors;
 
 public final class FilesResource implements ITypedResource<Map<String, String>> {
